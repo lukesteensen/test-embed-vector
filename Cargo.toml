@@ -1,0 +1,27 @@
+[package]
+name = "test-embed-vector"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = "0.1.61"
+inventory = "0.3.3"
+seahash = "4.1.0"
+serde = { version = "1.0.152", features = ["derive"] }
+toml = "0.5.10"
+vector = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+vector-core = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+vector-config = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+vector-common = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+vector-config-common = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+vector-config-macros = { git = "https://github.com/vectordotdev/vector", tag = "v0.27.0" }
+
+[patch.crates-io]
+# Removes dependency on `time` v0.1
+# https://github.com/chronotope/chrono/pull/578
+chrono = { git = "https://github.com/vectordotdev/chrono.git", branch = "no-default-time-v0.4.22-1" }
+
+# The upgrade for `tokio-util` >= 0.6.9 is blocked on https://github.com/vectordotdev/vector/issues/11257.
+tokio-util = { git = "https://github.com/vectordotdev/tokio", branch = "tokio-util-0.7.4-framed-read-continue-on-error" }
